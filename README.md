@@ -79,14 +79,14 @@ Resiliency
 
 | Flexibility                                     | Cost                            |
 | ----------------------------------------------- | ------------------------------- |
-| 16 AWS regions, 67 POPs worldwide               | Port Hours                      |
-| LOA available in 72 hours                       | Data out transfer               |
+| 23+ AWS regions, 104+ POPs worldwide            | Port Hours                      |
+| LOA available in 72 hours (or less)             | Data out transfer               |
 | Lead time of circuit build-out could take weeks | Service provider circuit / MPLS |
 |                                                 | Colo cage (if applicable)       |
 
 | Resiliency                       | Performance                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
-| 2 x DX in two locations + VPN    | 1 or 10 Gbps ports                                           |
+| 2 x DX in two locations + VPN    | 1 or 10 Gbps ports (100Gbps available in some regions)       |
 | 2 x DX in two separate locations | 100, 200, 300, 400, 500 Mbps ports available through partners |
 | 2 x DX in one location           | LAG several connections in a group for aggregate bandwidth   |
 | DX + VPN                         | ECMP across multiples                                        |
