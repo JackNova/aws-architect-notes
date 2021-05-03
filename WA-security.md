@@ -36,7 +36,7 @@ I dati vanno classificati a seconda di quanto sono 'sensibili' e dove appropriat
 
 
 
-**6. Prepare for security events**
+**6. Keep people away from data**
 
 Utilizza strumenti e meccanismi automatici per la gestione dei dati sensibili in modo da evitare l'errore umano.
 

@@ -22,6 +22,15 @@ Rappresentazione degli elementi fondamentali secondo la terminologia utilizzata 
 
 ![](WA-elements.svg)
 
+Esempi di **workload**:
+
+- Websiite di marketing
+- Website di ecommerce
+- Backend per app mobile 
+- Piattaforme di analytics
+
+
+
 ## Approccio all'Architettura
 
 
@@ -62,4 +71,5 @@ Repository di codice e documentazione per agevolare l'implementazione delle best
 - [Home Page del Framework di Architettura AWS](https://aws.amazon.com/architecture/well-architected)
 - [AWS Well Architected Tool](https://aws.amazon.com/well-architected-tool)
 - [AWS Well Architected Labs](https://wellarchitectedlabs.com/)
+- [Mappa del WA Framework](https://wa.aws.amazon.com/wat.map.it.html)
 
