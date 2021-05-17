@@ -154,15 +154,42 @@ Comunemente utilizzato per parcheggiare account che devono essere sospesi tempor
 
 ### Individual Business Users OU
 
-[ TODO ]
+Per necessità puntuali non classificabili come Workload. Un esempio può essere l'utilizzo di S3 per condividere file. Questo scenario non comprende i casi nei quali l'utente può accedere ad un'applicazione che fa parte di un Workload come ad esempio QuickSight a scopo di Business Intelligence. In quel caso non è necessario che l'utente business abbia accesso a livello di account ma si può semplicemente autorizzare il suo accesso a livello di applicazione.
 
 ### Exceptions OU
 
-[ TODO ]
+Questo tipo di organizzazione può coprire le casistiche nelle quali gli Account richiedono un set di policy diverso da quello applicato per il resto delle organizzazioni. Nel momento in cui ci si rende conto che le casistiche che si stanno coprendo sono comuni a più Account è meglio far ricadere la gestione con Organzzazioni di tipo Workload.
 
 ### Deployments OU
 
-[ TODO ]
+Non si applica se il tooling necessario per CI-CD è esterno ad AWS (on promise / altri servizi). 
+Nel momento in cui invece si vuole sfruttare AWS per la toolchain, AWS raccomanda l'utilizzo di un set di Production Deployment OUs.
+Alcuni dei razionali che scoraggiano la gestione del deployment all'interno delle unità organizzative relative ai Workload sono i seguenti:
+
+- I sistemi responsabili del deploy in produzione degli artefatti; delle verifiche di qualità e compliance; della promozione degli artefatti, sono maggiormente critici rispetto a quelli relativi ai Workload. Utilizzando questo modello e se il deploy prevede un watch ed un pull degli artefatti gli account di produzione dei Workload non hanno bisogno di avere permessi di scrittura nei repository di artefatti ma è sufficiente che abbiano accesso in lettura.
+- Le pipeline di CI-CD hanno necessità di accedere a workload sia di produzione che di non produzione. Centralizzando la gestione delle Pipeline si può evitare che i Workload di produzione abbiano accesso anche a quelli di non-produzione. 
+-  Il tooling utilizzato per la gestione di CI-CD è diverso da quello necessario per l'operativtà dei Workoad. Segregando tali tool si riduce la superficie di attacco.
+
+
+
+![           This image shows an example alignment of CI/CD accounts to workload             accounts.         ](multiaccount.assets/example-alignment-cicd-workload-accounts.png)
+
+**[FIGURA]** *Raggruppamento diverso delle responsabilità di CI-CD*
+
+
+
+Nel diagramma in figura si rappresenta uno scenario in cui Workload 1 è completamente isolato a livello di CI-CD ed ha la sua OU di Deployment di Produzione dedicata. Per i Workload 2,3,4 viene invece utilizzata la medesima Pipeline di produzione.
+
+AWS scoraggia la centralizzazione della CI-CD in un singolo Account, la gestione della sicurezza è più difficile come è anche più difficile mitigare gli impatti cross di eventuali incidenti.
+
+Da considerare che è necessario prevedere l'accesso da parte degli utenti owner dei Workload anche agli Account di Deploy, ad esempio:
+
+- [Lettura] Monitoraggio dell'esecuzione della Pipeline
+- [Scrittura] Il processo di promozione dell'artefatto potrebbe richiedere un certo livello di diritti di scrittura da parte di un subset degli Owner del Workload
+
+Al pari di quanto avviene per il processo di evoluzione dei Workload, è importante prevedere degli account di non -produzione anche per le Pipeline. Le pipeline di non-produzione non dovrebbero avere accesso ad alcuna risorsa di produzione.
+
+
 
 ### Transitional OU
 
